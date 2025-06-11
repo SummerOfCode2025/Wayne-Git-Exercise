@@ -83,18 +83,23 @@ switch(commands){
         break;
     
     case 'done':
-        
-        tasks[args[0]-1].status = `completed`;
-        saveTasks();
+        const index = Number(args[0]);
+        if (!isNaN(index) && index >= 1 && index <= tasks.length) {
+            tasks[index - 1].status = 'completed';
+            saveTasks();
+            console.log(chalk.green(`Task ${index} marked as completed.`));
+        } else {
+            console.log(chalk.red('Invalid task number.'));
+        }
         break;
     
     case 'delete':
-        
         const removed = tasks.splice(args[0]-1 ,1);
         saveTasks();
         console.log(chalk.blue(`already removed: ${removed[0] ? removed[0].task : 'none'}`));
         break;
-    
+        
+        
     case 'undo_last_command':
         /*
         pseudo node
