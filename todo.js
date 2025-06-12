@@ -58,7 +58,7 @@ if (fs.existsSync(FILE)) {
 }
 
 const commands = process.argv[2];  
-const args = process.argv.slice(35);
+const args = process.argv.slice(3);
 
 function saveTasks() {
   fs.writeFileSync(FILE, JSON.stringify(tasks, null, 2));
